@@ -3,9 +3,17 @@ const json = ".json?print=pretty";
 
 export interface Post {
     id: number;
+    by: string;
+    time: number;
+    text: string;
     type: string;
     dead?: boolean;
     deleted?: boolean;
+}
+
+export interface User {
+    id: number;
+    created: number;
 }
 
 function removeDead(posts: Post[]) {
@@ -16,25 +24,25 @@ function removeDeleted(posts: Post[]) {
     return posts.filter(({ deleted }) => deleted !== true);
 }
 
-function onlyComments(posts: Post[]) {
+function onlyComments(posts: Post[]): Post[] {
     return posts.filter(({ type }) => type === "comment");
 }
 
-function onlyPosts(posts: Post[]) {
+function onlyPosts(posts: Post[]): Post[] {
     return posts.filter(({ type }) => type === "story");
 }
 
-export function fetchItem(id: number) {
+export function fetchItem(id: number): Promise<Post> {
     return fetch(`${api}/item/${id}${json}`).then((res) => res.json());
 }
 
-export function fetchComments(ids: number[]) {
+export function fetchComments(ids: number[]): Promise<Post[]> {
     return Promise.all(ids.map(fetchItem)).then((comments) =>
         removeDeleted(onlyComments(removeDead(comments))),
     );
 }
 
-export function fetchMainPosts(type: string) {
+export function fetchMainPosts(type: string): Promise<Post[]> {
     return fetch(`${api}/${type}stories${json}`)
         .then((res) => res.json())
         .then((ids) => {
@@ -50,11 +58,11 @@ export function fetchMainPosts(type: string) {
         .then((posts) => removeDeleted(onlyPosts(removeDead(posts))));
 }
 
-export function fetchUser(id: number) {
+export function fetchUser(id: number): Promise<User> {
     return fetch(`${api}/user/${id}${json}`).then((res) => res.json());
 }
 
-export function fetchPosts(ids: number[]) {
+export function fetchPosts(ids: number[]): Promise<Post[]> {
     return Promise.all(ids.map(fetchItem)).then((posts) =>
         removeDeleted(onlyPosts(removeDead(posts))),
     );
