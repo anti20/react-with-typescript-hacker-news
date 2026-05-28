@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "jsx": "react",
+        "allowJs": true,
+        "checkJs": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "ignoreDeprecations": "6.0",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true
+    },
+    "include": ["app/**/*", "utils/**/*", "contexts/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
