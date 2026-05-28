@@ -1,7 +1,7 @@
 {
-    "name": "react-with-typescript-course-curriculum",
+    "name": "react-with-typescript-hacker-news",
     "version": "1.0.0",
-    "description": "Curriculum for ui.dev React with TypeScript course.",
+    "description": "Complete React + TypeScript mini-app with routing and data fetching.",
     "main": "index.js",
     "scripts": {
         "start": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server",
@@ -11,7 +11,8 @@
     "babel": {
         "presets": [
             "@babel/preset-env",
-            "@babel/preset-react"
+            "@babel/preset-react",
+            "@babel/preset-typescript"
         ],
         "plugins": [
             "@babel/plugin-proposal-class-properties",
@@ -34,8 +35,9 @@
         "@babel/preset-env": "^7.5.5",
         "@babel/preset-react": "^7.0.0",
         "@types/node": "^25.9.1",
-        "@types/react": "^19.2.15",
-        "@types/react-dom": "^19.2.3",
+        "@types/react": "^16.14.70",
+        "@types/react-dom": "^16.9.25",
+        "@types/react-router-dom": "^5.3.3",
         "babel-loader": "^8.0.6",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "copy-webpack-plugin": "^5.0.3",
